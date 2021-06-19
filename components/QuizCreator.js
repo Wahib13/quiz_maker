@@ -28,7 +28,8 @@ class QuizCreator extends React.Component {
               onQuestionChange={(e) => this.onQuestionChange(e)}
               onPossibleAnswerChange={(e) => this.onPossibleAnswerChange(e)}
               new_option={question.new_option}
-              onSubmit={(e) => this.handleSubmit(e)} />
+              onSubmit={(e) => this.handleSubmit(e)}
+              onDropdownChange={(e) => this.onDropdownChange(e)} />
         </div>
       )
     })
@@ -75,6 +76,18 @@ class QuizCreator extends React.Component {
   onPossibleAnswerChange(e) {
     var new_objective_questions = this.state.objective_questions
     new_objective_questions[e.target.id].new_option = e.target.value
+    this.setState(
+      {
+        objective_questions: new_objective_questions
+      }
+    )
+    console.log(this.state)
+  }
+
+  onDropdownChange(e) {
+    console.log(`dropdown ${e.target.id} changed to ${e.target.value}`)
+    var new_objective_questions = this.state.objective_questions
+    new_objective_questions[e.target.id].correct_option = parseInt(e.target.value)
     this.setState(
       {
         objective_questions: new_objective_questions

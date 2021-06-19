@@ -37,6 +37,7 @@ class Quiz extends React.Component {
     }
   }
   render() {
+    console.log(this.props.objective_questions)
     const questions = this.props.objective_questions.map((value, position) => {
       return <Question
         value={value}
@@ -74,8 +75,9 @@ class Quiz extends React.Component {
   evaluateAnswers() {
     // compare selected to the actual correct answers
     var score = 0
-    for (var i = 0; i < objective_questions.length; i++) {
-      if (objective_questions[i].correct_option === this.state.selected_answers[i]) {
+    for (var i = 0; i < this.props.objective_questions.length; i++) {
+      console.log(`${this.props.objective_questions[i].correct_option} ===== ${this.state.selected_answers[i]}`)
+      if (this.props.objective_questions[i].correct_option === this.state.selected_answers[i]) {
         score++;
       }
     }
